@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Slideshow</title>
+  <style>
+    /* Global reset and container centering */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; width: 100%; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+      overflow: hidden; 
+    }
+
+    /* Slideshow Container */
+    .slideshow-container {
+      position: relative;
+      width: 90vw; 
+      max-width: 394px; 
+      aspect-ratio: 2 / 3; 
+      overflow: hidden;
+      border: 1px solid #222;
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    }
+
+    /* Slides */
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+
+    /* Stamp Logo - Moved to right-middle */
+    .stamp-logo {
+        position: absolute;
+        /* Aligns the middle of the stamp to the middle of the poster */
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%); 
+        width: 25%; 
+        max-width: 128px;
+        height: auto;
+        z-index: 20; /* Ensures it's on top of the slides */
+        opacity: 0.7; /* Watermark effect */
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+  <img src="PyleaMUN_finalstamp.png" alt="PyleaMUN Stamp" class="stamp-logo">
+
+  <img class="slide active" src="19th Century London.png" alt="A poster set in 19th Century London">
+    <img class="slide" src="Post Second World War.png" alt="A poster set after World War Two">
+    <img class="slide" src="Roman Times.png" alt="A poster set in Roman Times">
+    <img class="slide" src="Ancient Greek Times.png" alt="A poster set in Ancient Greek Times">
+    <img class="slide" src="Viking Times.png" alt="A poster set in Viking Times">
+    <img class="slide" src="World War One.png" alt="A poster set during World War One">
+    <img class="slide" src="Tibetan Setting.png" alt="A poster in a Tibetan Setting">
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    
+    function showSlides() {
+      slides[slideIndex].classList.remove('active');
+      slideIndex++;
+      if (slideIndex >= slides.length) {
+        slideIndex = 0;
+      }
+      slides[slideIndex].classList.add('active');
+    }
+    
+    // Change slide every 2 seconds
+    setInterval(showSlides, 2000);
+  </script>
+
+</body>
+</html>
